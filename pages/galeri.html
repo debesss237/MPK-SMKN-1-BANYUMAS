@@ -7,21 +7,110 @@
   <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;900&family=DM+Sans:wght@300;400;500;600&family=Bebas+Neue&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
   <link rel="stylesheet" href="../style.css">
+  <link rel="icon" type="image/png" href="../foto/mpk_new_logo_smensa-removebg-preview (1).png">
+
+  <!-- CSS untuk modal popup galeri -->
+  <style>
+    .modal {
+      display: none;
+      position: fixed;
+      z-index: 1000;
+      left: 0;
+      top: 0;
+      width: 100%;
+      height: 100%;
+      background-color: rgba(0, 0, 0, 0.9);
+      justify-content: center;
+      align-items: center;
+      padding: 20px;
+    }
+
+    .modal-content {
+      position: relative;
+      max-width: 90%;
+      max-height: 90%;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+
+    .close-modal {
+      position: absolute;
+      top: -40px;
+      right: 0;
+      color: #fff;
+      font-size: 35px;
+      font-weight: bold;
+      cursor: pointer;
+      z-index: 1001;
+    }
+
+    .close-modal:hover {
+      color: var(--emas);
+    }
+
+    .modal-img-container {
+      width: 100%;
+      max-width: 800px;
+      height: 60vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+
+    .modal-img {
+      width: 100%;
+      height: 100%;
+      background-size: contain;
+      background-repeat: no-repeat;
+      background-position: center;
+      border-radius: 4px;
+    }
+
+    .modal-caption {
+      text-align: center;
+      color: #fff;
+      margin-top: 20px;
+    }
+
+    .modal-caption h3 {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.5rem;
+      margin-bottom: 0.5rem;
+    }
+
+    .modal-caption p {
+      color: #ccc;
+      font-size: 0.9rem;
+    }
+
+    /* Cursor pointer untuk item galeri */
+    .galeri-item {
+      cursor: pointer;
+    }
+
+    .galeri-item:hover .galeri-img {
+      transform: scale(1.05);
+      transition: transform 0.3s ease;
+    }
+  </style>
+
 </head>
+
+
 <body>
 
 <nav>
   <a href="../index.html" class="nav-logo">
-
-    <div class="logo-badge">OSIS</div>
+    <img src="../foto/mpk_new_logo_smensa-removebg-preview (1).png" alt="Logo OSIS & MPK" class="logo-badge">
     <div class="nav-text">
       <span>OSIS & MPK</span>
       <span>SMKN 1 Banyumas</span>
     </div>
   </a>
   <ul class="nav-links">
-    <li><a href="../index.html">Beranda</a></li>
 
+    <li><a href="../index.html">Beranda</a></li>
     <li><a href="tentang.html">Tentang</a></li>
     <li><a href="program.html">Program Kerja</a></li>
     <li><a href="pengurus.html">Pengurus</a></li>
@@ -40,7 +129,6 @@
   <div class="page-header-inner">
     <div class="breadcrumb">
       <a href="../index.html">Beranda</a>
-
       <span>/</span>
       <span>Galeri</span>
     </div>
@@ -154,14 +242,14 @@
 <footer>
   <div class="footer-left">
     <a href="../index.html" class="nav-logo">
-
-      <div class="logo-badge">OSIS</div>
+      <img src="../foto/mpk_new_logo_smensa-removebg-preview (1).png" alt="Logo OSIS & MPK" class="logo-badge">
       <div class="nav-text">
         <span>OSIS & MPK</span>
         <span>SMKN 1 Banyumas</span>
       </div>
     </a>
     <div class="footer-divider"></div>
+
   </div>
   <div class="footer-right">
     <div class="footer-social">
@@ -190,5 +278,61 @@
 </footer>
 
 <script src="../script.js"></script>
+
+<!-- Script untuk popup galeri -->
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+  const modal = document.getElementById('galeri-modal');
+  const modalImg = document.getElementById('modal-image');
+  const modalTitle = document.getElementById('modal-title');
+  const modalDate = document.getElementById('modal-date');
+  const closeModal = document.querySelector('.close-modal');
+  const galeriItems = document.querySelectorAll('.galeri-item');
+
+  // Buka modal saat gambar diklik
+  galeriItems.forEach(function(item) {
+    item.addEventListener('click', function() {
+      const img = this.querySelector('.galeri-img');
+      const caption = this.querySelector('.galeri-caption h4');
+      const date = this.querySelector('.galeri-caption span');
+      
+      // Dapatkan background image dari div
+      const style = window.getComputedStyle(img);
+      const bgImage = style.backgroundImage;
+      
+      // Set konten modal
+      modalImg.style.backgroundImage = bgImage;
+      modalTitle.textContent = caption ? caption.textContent : '';
+      modalDate.textContent = date ? date.textContent : '';
+      
+      // Tampilkan modal
+      modal.style.display = 'flex';
+      document.body.style.overflow = 'hidden';
+    });
+  });
+
+  // Tutup modal saat tombol X diklik
+  closeModal.addEventListener('click', function() {
+    modal.style.display = 'none';
+    document.body.style.overflow = 'auto';
+  });
+
+  // Tutup modal saat klik di luar gambar
+  modal.addEventListener('click', function(e) {
+    if (e.target === modal) {
+      modal.style.display = 'none';
+      document.body.style.overflow = 'auto';
+    }
+  });
+
+  // Tutup modal dengan tombol ESC
+  document.addEventListener('keydown', function(e) {
+    if (e.key === 'Escape' && modal.style.display === 'flex') {
+      modal.style.display = 'none';
+      document.body.style.overflow = 'auto';
+    }
+  });
+});
+</script>
 </body>
 </html>
