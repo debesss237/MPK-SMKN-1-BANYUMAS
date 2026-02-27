@@ -71,7 +71,7 @@ if (formKontak) {
     const subjek = document.getElementById('subjek').value.trim();
     const pesan = document.getElementById('pesan').value.trim();
 
-    if (!nama || !kelas || !email || !subjek || !pesan) {
+    if (!nama || !kelas || !subjek || !pesan) {
       alert('Semua field harus diisi!');
       return;
     }
