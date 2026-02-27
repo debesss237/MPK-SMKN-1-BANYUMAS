@@ -3,13 +3,37 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Kontak — OSIS & MPK SMKN 1 Banyumas</title>
+  <title>Kontak — OSIS & MPK SMKN 1 Banyumas | Hubungi Kami</title>
+  
+  <!-- SEO Meta Tags -->
+  <meta name="description" content="Hubungi OSIS & MPK SMKN 1 Banyumas. Alamat, telepon, email, dan media sosial. Kirim pesan atau aspirasi Anda melalui formulir kontak kami.">
+  <meta name="keywords" content="Kontak OSIS SMKN 1 Banyumas, Alamat MPK SMKN 1 Banyumas, Email OSIS, Telepon SMKN 1 Banyumas, Media Sosial OSIS">
+  <meta name="author" content="OSIS & MPK SMKN 1 Banyumas">
+  <meta name="robots" content="index, follow">
+  <link rel="canonical" href="https://mpk-smkn1-banyumas.vercel.app/pages/kontak.html">
+  
+  <!-- Open Graph Meta Tags -->
+  <meta property="og:title" content="Kontak OSIS & MPK SMKN 1 Banyumas | Hubungi Kami">
+  <meta property="og:description" content="Hubungi OSIS & MPK SMKN 1 Banyumas. Alamat, telepon, email, dan media sosial. Kirim pesan atau aspirasi Anda.">
+  <meta property="og:image" content="https://mpk-smkn1-banyumas.vercel.app/foto/mpk_new_logo_smensa-removebg-preview (1).png">
+  <meta property="og:url" content="https://mpk-smkn1-banyumas.vercel.app/pages/kontak.html">
+  <meta property="og:type" content="website">
+  <meta property="og:locale" content="id_ID">
+  
+  <!-- Twitter Card Meta Tags -->
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Kontak OSIS & MPK SMKN 1 Banyumas">
+  <meta name="twitter:description" content="Hubungi OSIS & MPK SMKN 1 Banyumas. Alamat, telepon, email, dan media sosial.">
+  <meta name="twitter:image" content="https://mpk-smkn1-banyumas.vercel.app/foto/mpk_new_logo_smensa-removebg-preview (1).png">
+  
+  <!-- Fonts & Styles -->
   <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;900&family=DM+Sans:wght@300;400;500;600&family=Bebas+Neue&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
   <link rel="stylesheet" href="../style.css">
   <link rel="icon" type="image/png" href="../foto/mpk_new_logo_smensa-removebg-preview (1).png">
 
 </head>
+
 
 <body>
 
@@ -126,7 +150,7 @@ Jl. Pramuka Banyumas - Purwokerto Road No.1, Karangpucung, Kejawar, Kec. Banyuma
       <!-- FORM KONTAK -->
       <div>
         <h3 style="font-family:'Playfair Display',serif;font-size:1.4rem;font-weight:700;margin-bottom:1.5rem;">Kirim Pesan atau Aspirasi</h3>
-        <form class="form-kontak" onsubmit="event.preventDefault(); alert('Pesan berhasil dikirim! Kami akan menghubungi Anda segera.'); this.reset();">
+        <form class="form-kontak">
           <div>
             <label for="nama">Nama Lengkap</label>
             <input type="text" id="nama" name="nama" placeholder="Nama Anda" required>
@@ -201,5 +225,29 @@ Jl. Pramuka Banyumas - Purwokerto Road No.1, Karangpucung, Kejawar, Kec. Banyuma
 </footer>
 
 <script src="../script.js"></script>
+
+<!-- Firebase SDK -->
+<script type="module">
+  // Import Firebase modules
+  import { initializeApp } from 'https://www.gstatic.com/firebasejs/9.22.0/firebase-app.js';
+  import { getFirestore, collection, addDoc, serverTimestamp } from 'https://www.gstatic.com/firebasejs/9.22.0/firebase-firestore.js';
+
+  // Firebase config - GANTI DENGAN CONFIG ANDA
+  const firebaseConfig = {
+    apiKey: "YOUR_API_KEY",
+    authDomain: "YOUR_PROJECT.firebaseapp.com",
+    projectId: "YOUR_PROJECT_ID",
+    storageBucket: "YOUR_PROJECT.appspot.com",
+    messagingSenderId: "YOUR_SENDER_ID",
+    appId: "YOUR_APP_ID"
+  };
+
+  // Initialize Firebase
+  const app = initializeApp(firebaseConfig);
+  const db = getFirestore(app);
+
+  // Export db for use in script.js
+  window.db = db;
+</script>
 </body>
 </html>
