@@ -1,23 +1,20 @@
-# TODO: Implementasi Form Kontak dengan Firebase
+# TODO: Implementasi Form Kontak dengan WhatsApp
 
 ## Tugas
-- [x] Membuat form kontak yang menyimpan data ke Firebase Firestore
+- [x] Membuat form kontak yang mengirim pesan via WhatsApp
 - [x] Validasi field (nama, kelas, email, subjek, pesan) tidak boleh kosong
-- [x] Simpan data ke Firestore dengan timestamp otomatis
+- [x] Buat pesan terformat dan buka WhatsApp dengan URL wa.me
 - [x] Tampilkan alert sukses setelah berhasil
 - [x] Reset form otomatis
-- [x] Gunakan Firebase v9 modular
 
 ## Langkah Implementasi
-- [x] Edit pages/kontak.html: Tambahkan Firebase SDK script
-- [x] Edit script.js: Ganti handler form dengan validasi dan simpan ke Firestore
-- [x] Hapus onsubmit lama dari form HTML
+- [x] Edit pages/kontak.html: Hapus Firebase SDK script
+- [x] Edit script.js: Ganti handler form dengan validasi dan buka WhatsApp
+- [x] Update TODO_FORM.md
 
-## Setup Firebase
-- [ ] Buat proyek Firebase di console.firebase.google.com
-- [ ] Aktifkan Firestore Database
-- [ ] Ganti placeholder config di pages/kontak.html dengan config asli
+## Setup WhatsApp
+- [ ] Ganti placeholder nomor WhatsApp di script.js dengan nomor asli
 - [ ] Test form di browser
 
 ## Status
-✅ IMPLEMENTASI SELESAI - Script JS dan struktur HTML siap digunakan. Tinggal setup Firebase config.
+✅ IMPLEMENTASI SELESAI - Form sekarang mengirim via WhatsApp alih-alih database. Tinggal ganti nomor WhatsApp.

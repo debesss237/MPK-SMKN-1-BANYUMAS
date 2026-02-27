@@ -61,7 +61,7 @@ if (filterBtns.length) {
 // ==================== FORM KONTAK ====================
 const formKontak = document.querySelector('.form-kontak');
 if (formKontak) {
-  formKontak.addEventListener('submit', async (e) => {
+  formKontak.addEventListener('submit', (e) => {
     e.preventDefault();
 
     // Validasi
@@ -76,26 +76,20 @@ if (formKontak) {
       return;
     }
 
-    try {
-      // Import Firebase functions (assuming window.db is set from module)
-      const { collection, addDoc, serverTimestamp } = await import('https://www.gstatic.com/firebasejs/9.22.0/firebase-firestore.js');
+    // Nomor WhatsApp (ganti dengan nomor asli)
+    const whatsappNumber = '+62 xxx-xxxx-xxxx'.replace(/\D/g, ''); // 62xxxxxxxxx
 
-      // Simpan ke Firestore
-      await addDoc(collection(window.db, 'messages'), {
-        nama,
-        kelas,
-        email,
-        subjek,
-        pesan,
-        timestamp: serverTimestamp()
-      });
+    // Buat pesan
+    const message = `Halo, saya ${nama} dari ${kelas}.\nEmail: ${email}\nSubjek: ${subjek}\nPesan: ${pesan}`;
 
-      alert('Pesan berhasil dikirim! Kami akan menghubungi Anda segera.');
-      formKontak.reset();
-    } catch (error) {
-      console.error('Error adding document: ', error);
-      alert('Terjadi kesalahan. Silakan coba lagi.');
-    }
+    // URL WhatsApp
+    const url = `https://wa.me/${whatsappNumber}?text=${encodeURIComponent(message)}`;
+
+    // Buka WhatsApp
+    window.open(url, '_blank');
+
+    alert('Pesan akan dibuka di WhatsApp. Pastikan WhatsApp terinstall dan nomor sudah benar.');
+    formKontak.reset();
   });
 }
 
