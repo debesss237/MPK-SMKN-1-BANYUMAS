@@ -77,7 +77,7 @@ if (formKontak) {
     }
 
     // Nomor WhatsApp (ganti dengan nomor asli)
-    const whatsappNumber = '+62 xxx-xxxx-xxxx'.replace(/\D/g, ''); // 62xxxxxxxxx
+    const whatsappNumber = '6285747529407'; // 62xxxxxxxxx
 
     // Buat pesan
     const message = `Halo, saya ${nama} dari ${kelas}.\nEmail: ${email}\nSubjek: ${subjek}\nPesan: ${pesan}`;
