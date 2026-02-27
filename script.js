@@ -61,10 +61,41 @@ if (filterBtns.length) {
 // ==================== FORM KONTAK ====================
 const formKontak = document.querySelector('.form-kontak');
 if (formKontak) {
-  formKontak.addEventListener('submit', (e) => {
+  formKontak.addEventListener('submit', async (e) => {
     e.preventDefault();
-    alert('Pesan berhasil dikirim! Kami akan menghubungi Anda segera.');
-    formKontak.reset();
+
+    // Validasi
+    const nama = document.getElementById('nama').value.trim();
+    const kelas = document.getElementById('kelas').value.trim();
+    const email = document.getElementById('email').value.trim();
+    const subjek = document.getElementById('subjek').value.trim();
+    const pesan = document.getElementById('pesan').value.trim();
+
+    if (!nama || !kelas || !email || !subjek || !pesan) {
+      alert('Semua field harus diisi!');
+      return;
+    }
+
+    try {
+      // Import Firebase functions (assuming window.db is set from module)
+      const { collection, addDoc, serverTimestamp } = await import('https://www.gstatic.com/firebasejs/9.22.0/firebase-firestore.js');
+
+      // Simpan ke Firestore
+      await addDoc(collection(window.db, 'messages'), {
+        nama,
+        kelas,
+        email,
+        subjek,
+        pesan,
+        timestamp: serverTimestamp()
+      });
+
+      alert('Pesan berhasil dikirim! Kami akan menghubungi Anda segera.');
+      formKontak.reset();
+    } catch (error) {
+      console.error('Error adding document: ', error);
+      alert('Terjadi kesalahan. Silakan coba lagi.');
+    }
   });
 }
 
