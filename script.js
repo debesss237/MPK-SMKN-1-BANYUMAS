@@ -26,18 +26,7 @@ document.querySelectorAll('.nav-links a').forEach((a) => {
 });
 
 // ==================== TABS (pengurus.html) ====================
-const tabBtns = document.querySelectorAll('.tab-btn');
-if (tabBtns.length) {
-  tabBtns.forEach((btn) => {
-    btn.addEventListener('click', () => {
-      const target = btn.dataset.tab;
-      tabBtns.forEach((b) => b.classList.remove('active'));
-      document.querySelectorAll('.tab-content').forEach((c) => c.classList.remove('active'));
-      btn.classList.add('active');
-      document.getElementById(target).classList.add('active');
-    });
-  });
-}
+// Removed tab functionality since only MPK content remains
 
 // ==================== GALERI FILTER ====================
 const filterBtns = document.querySelectorAll('.filter-btn');
@@ -80,7 +69,8 @@ if (formKontak) {
     const whatsappNumber = '6285747529407'; // 62xxxxxxxxx
 
     // Buat pesan
-    const message = `Halo, saya ${nama} dari ${kelas}.\nEmail: ${email}\nSubjek: ${subjek}\nPesan: ${pesan}`;
+    const emailLine = email ? `\nEmail: ${email}` : '';
+    const message = `Halo, saya ${nama} dari ${kelas}.${emailLine}\nSubjek: ${subjek}\nPesan: ${pesan}`;
 
     // URL WhatsApp
     const url = `https://wa.me/${whatsappNumber}?text=${encodeURIComponent(message)}`;
